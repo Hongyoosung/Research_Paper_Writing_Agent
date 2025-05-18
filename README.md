@@ -2,45 +2,45 @@
 
 IEEE 형식의 LaTeX 출력으로 맞춤형 학술 논문을 생성하는 도구
 
-<br>
+
 
 #
 
 ### 📋 개요
 연구 논문 작성 에이전트는 Google Colab을 기반으로 고품질 학술 논문 작성을 간소화하는 도구입니다. 주요 기능은 다음과 같습니다:
 
-맞춤형 연구 주제: 전용 셀에서 연구 주제, 키워드, 제목 프롬프트를 설정할 수 있습니다.
-조정 가능한 논문 길이: 각 섹션의 단어 수를 설정 셀에서 자유롭게 조정 가능합니다.
-강력한 로깅 및 디버깅: 상세한 로그와 품질 검사를 통해 신뢰할 수 있는 결과를 보장합니다.
-<br>
+- **맞춤형 연구 주제**: 전용 셀에서 연구 주제, 키워드, 제목 프롬프트를 설정할 수 있습니다.
+- **조정 가능한 논문 길이**: 각 섹션의 단어 수를 설정 셀에서 자유롭게 조정 가능합니다.
+- **강력한 로깅 및 디버깅**: 상세한 로그와 품질 검사를 통해 신뢰할 수 있는 결과를 보장합니다.
+
 
 #
 
 ### ✨ 주요 기능
 
-자동 논문 생성: 적절한 구조와 인용을 포함한 완전한 학술 논문을 생성합니다.
-문헌 통합: ArXiv에서 관련 논문을 가져와 Chroma DB에 저장 후 검색 증강 생성(RAG)을 수행합니다.
-품질 보증: 섹션의 길이, 관련성, 인용, 가독성을 기준으로 품질을 평가합니다.
-LaTeX 출력: BibTeX 인용과 함께 IEEE 형식의 PDF 논문을 생성합니다.
-유연한 설정:
-셀 13에서 연구 주제와 키워드를 수정 가능.
-셀 14에서 섹션 길이(예: 초록, 서론) 조정 가능.
+- **자동 논문 생성**: 적절한 구조와 인용을 포함한 완전한 학술 논문을 생성합니다.
+- **문헌 통합**: ArXiv에서 관련 논문을 가져와 Chroma DB에 저장 후 검색 증강 생성(RAG)을 수행합니다.
+- **품질 보증**: 섹션의 길이, 관련성, 인용, 가독성을 기준으로 품질을 평가합니다.
+- **LaTeX 출력**: BibTeX 인용과 함께 IEEE 형식의 PDF 논문을 생성합니다.
+- **유연한 설정**:
+셀 3에서 연구 주제와 키워드를 수정 가능.
+셀 4에서 섹션 길이(예: 초록, 서론) 조정 가능.
 
 
-결과 패키징: PDF, LaTeX 파일, BibTeX 참조, 로그, 섹션 JSON을 포함한 zip 파일을 제공합니다.
+- **결과 패키징**: PDF, LaTeX 파일, BibTeX 참조, 로그, 섹션 JSON을 포함한 zip 파일을 제공합니다.
 
 #
 
 ### 🛠️ 요구 사항
 
-환경: 인터넷 연결이 가능한 Google Colab.
-종속성 (셀 1에서 설치):
-Python 라이브러리: openai, chromadb, arxiv, requests, torch, sentence-transformers, langdetect, scikit-learn, rouge.
-시스템 패키지: texlive, texlive-latex-extra, texlive-fonts-recommended, texlive-science, texlive-publishers.
+- 환경: 인터넷 연결이 가능한 Google Colab.
+- 종속성 (셀 1에서 설치):
+- Python 라이브러리: openai, chromadb, arxiv, requests, torch, sentence-transformers, langdetect, scikit-learn, rouge.
+- 시스템 패키지: texlive, texlive-latex-extra, texlive-fonts-recommended, texlive-science, texlive-publishers.
 
 
-API 키: Colab의 userdata에 OPENAI로 저장된 OpenAI API 키.
-Google Drive: 출력 저장을 위해 마운트 (셀 1에서 설정).
+- API 키: Colab의 userdata에 OPENAI로 저장된 OpenAI API 키.
+- Google Drive: 출력 저장을 위해 마운트 (셀 1에서 설정).
 
 #
 
@@ -139,13 +139,13 @@ SECTION_LENGTHS = {
 
 ### 🔄 워크플로우
 
-- 초기화 (셀 1–8): 종속성 설치, 작업 디렉토리 설정, 연구 주제와 섹션 길이 설정, OpenAI 및 Chroma DB 클라이언트 초기화, LaTeX 컴파일 테스트.
-- 텍스트 생성 (셀 11): gpt-4o-mini를 사용한 텍스트 생성 함수 정의, 재시도 로직 및 프롬프트 정리 포함.
-- 문헌 수집 (셀 12): `KEYWORDS` 기반으로 ArXiv 논문을 가져와 Chroma DB에 저장.
-- 논문 생성 (셀 15–17): 제목 및 섹션 생성, RAG를 활용한 관련 연구 통합, 품질 점수 매기기.
-- LaTeX 컴파일 (셀 18–21): 콘텐츠를 LaTeX로 변환, PDF 컴파일, 인용 처리.
-- 출력 패키징 (셀 22): 모든 출력을 다운로드용 zip 파일로 압축.
-- 요약 및 디버깅 (셀 23–24): 품질 점수, 실행 시간, 파일 세부 정보 요약 제공.
+1. 초기화 (셀 1–8): 종속성 설치, 작업 디렉토리 설정, 연구 주제와 섹션 길이 설정, OpenAI 및 Chroma DB 클라이언트 초기화, LaTeX 컴파일 테스트.
+2. 텍스트 생성 (셀 11): gpt-4o-mini를 사용한 텍스트 생성 함수 정의, 재시도 로직 및 프롬프트 정리 포함.
+3. 문헌 수집 (셀 12): `KEYWORDS` 기반으로 ArXiv 논문을 가져와 Chroma DB에 저장.
+4. 논문 생성 (셀 15–17): 제목 및 섹션 생성, RAG를 활용한 관련 연구 통합, 품질 점수 매기기.
+5. LaTeX 컴파일 (셀 18–21): 콘텐츠를 LaTeX로 변환, PDF 컴파일, 인용 처리.
+6. 출력 패키징 (셀 22): 모든 출력을 다운로드용 zip 파일로 압축.
+7. 요약 및 디버깅 (셀 23–24): 품질 점수, 실행 시간, 파일 세부 정보 요약 제공.
 
 #
 
